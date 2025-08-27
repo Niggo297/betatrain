@@ -1,0 +1,20 @@
+# Platzhalter für Sound-Dateien
+# 
+# Hier sollten die folgenden WAV-Dateien platziert werden (EMULATOR-OPTIMIERT):
+# - start.wav (Startsound, ~300ms)
+# - halfTime.wav (Halbzeit-Signal, ~250ms) 
+# - tick.wav (Countdown-Tick, ~200ms)
+# - warning.wav (Warnsound, ~250ms)
+# - urgent.wav (Dringender Sound, ~200ms)
+# - finish.wav (Schlusssound, ~300ms)
+# - go.wav (GO-Signal, ~250ms)
+#
+# Format: 16-bit PCM WAV, 44.1kHz, Mono
+# Mindestlänge: 200ms (für zuverlässige Emulator-Wiedergabe)
+# Dateigröße: 10-50KB pro Datei
+#
+# EMULATOR-EINSTELLUNGEN:
+# 1. Extended Controls → Audio
+# 2. "Microphone" aktivieren
+# 3. "Play Audio" aktivieren
+# 4. Host Audio Input/Output aktivieren

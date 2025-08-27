@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMOM Flexible Timer Demo</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .demo-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .demo-button {
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .demo-button.secondary {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a4c);
+      }
+
+      .demo-button.test {
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      }
+
+      .timer-config {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .config-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 10px 0;
+      }
+
+      .config-row label {
+        min-width: 150px;
+        font-weight: bold;
+      }
+
+      .config-row input,
+      .config-row select {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        font-size: 16px;
+      }
+
+      .status {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 18px;
+        margin: 20px 0;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .emom-timer {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        margin: 30px 0;
+        display: none;
+      }
+
+      .timer-display {
+        margin-bottom: 20px;
+      }
+
+      .round-info {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #ffd700;
+      }
+
+      .time-display {
+        font-size: 4em;
+        font-weight: bold;
+        margin: 20px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .phase-info {
+        font-size: 1.4em;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      .progress-container {
+        background: rgba(255, 255, 255, 0.1);
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 15px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #4caf50, #ff6b6b);
+        border-radius: 4px;
+        transition: width 1s linear;
+        width: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎵 EMOM Flexible Timer Demo</h1>
+
+      <div class="timer-config">
+        <h3>⚙️ Timer Konfiguration</h3>
+        <div class="config-row">
+          <label>Interval-Sekunden:</label>
+          <select id="intervalSeconds">
+            <option value="30">30 Sekunden</option>
+            <option value="45">45 Sekunden</option>
+            <option value="60" selected>60 Sekunden</option>
+            <option value="90">90 Sekunden</option>
+            <option value="120">2 Minuten</option>
+          </select>
+        </div>
+        <div class="config-row">
+          <label>Anzahl Runden:</label>
+          <input type="number" id="totalRounds" value="3" min="1" max="20" />
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <button class="demo-button test" onclick="testSimpleSound()">
+          🔊 Test Einfacher Sound
+        </button>
+        <button class="demo-button" onclick="startFlexibleEmom()">
+          ⏱️ Flexibles EMOM starten
+        </button>
+        <button class="demo-button secondary" onclick="stopAllSounds()">
+          ⏹️ Stoppen
+        </button>
+      </div>
+
+      <div id="status" class="status">
+        Bereit zum Abspielen - Konfigurieren Sie Ihr EMOM und klicken Sie
+        "Flexibles EMOM starten"!
+      </div>
+
+      <div id="emom-timer" class="emom-timer">
+        <div class="timer-display">
+          <div id="round-info" class="round-info">Runde 1/3</div>
+          <div id="time-display" class="time-display">60</div>
+          <div id="phase-info" class="phase-info">Arbeitszeit</div>
+        </div>
+        <div class="progress-container">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 30px;
+          padding: 20px;
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 15px;
+        "
+      >
+        <h3>🎵 Sound-System Features:</h3>
+        <ul>
+          <li>🔊 <strong>Flexible Timer-Längen</strong> - 30s bis 2 Minuten</li>
+          <li>
+            🎯 <strong>Intelligente Halbzeit</strong> - Automatisch bei 50% der
+            Zeit
+          </li>
+          <li>
+            ⚠️ <strong>Progressive Warnsignale</strong> - Letzten 10 Sekunden
+          </li>
+          <li>
+            🚀 <strong>Start-Sound</strong> - Klares Signal für neue Runden
+          </li>
+          <li>
+            🏁 <strong>Finish-Sound</strong> - Ende jeder Runde ohne Pause
+          </li>
+          <li>🎉 <strong>Completion-Fanfare</strong> - Finale Feier</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Audio Context für Web Audio API
+      let audioContext;
+      let emomRunning = false;
+      let currentConfig = {
+        intervalSeconds: 60,
+        totalRounds: 3,
+      };
+
+      // Initialisiere Audio Context
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+          console.log("Audio Context erstellt:", audioContext.state);
+        }
+        return audioContext;
+      }
+
+      function updateStatus(message) {
+        document.getElementById("status").textContent = message;
+        console.log("Status:", message);
+      }
+
+      // Einfacher Test-Sound
+      function testSimpleSound() {
+        console.log("🔊 Test Sound gestartet...");
+        updateStatus("🔊 Teste Audio...");
+
+        try {
+          const context = initAudio();
+
+          if (context.state === "suspended") {
+            context.resume().then(() => {
+              console.log("Audio Context resumed");
+              playTestBeep(context);
+            });
+          } else {
+            playTestBeep(context);
+          }
+        } catch (error) {
+          console.error("Audio Fehler:", error);
+          updateStatus("❌ Audio-Fehler: " + error.message);
+        }
+      }
+
+      function playTestBeep(context) {
+        console.log("🎵 Spiele Test-Beep...");
+
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
+
+        oscillator.frequency.setValueAtTime(800, context.currentTime);
+        oscillator.type = "sine";
+
+        gainNode.gain.setValueAtTime(0, context.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, context.currentTime + 0.01);
+        gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+
+        oscillator.start(context.currentTime);
+        oscillator.stop(context.currentTime + 0.5);
+
+        console.log("✅ Test-Beep abgespielt");
+        updateStatus("✅ Test-Sound erfolgreich abgespielt!");
+      }
+
+      // EMOM Sounds
+      function playSound(type, frequency = 800, duration = 300) {
+        const context = initAudio();
+        if (context.state === "suspended") {
+          context.resume();
+        }
+
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
+
+        // Verschiedene Sound-Typen
+        switch (type) {
+          case "tick":
+            oscillator.frequency.setValueAtTime(600, context.currentTime);
+            break;
+          case "warning":
+            oscillator.frequency.setValueAtTime(900, context.currentTime);
+            break;
+          case "urgent":
+            oscillator.frequency.setValueAtTime(1200, context.currentTime);
+            break;
+          case "halfTime":
+            oscillator.frequency.setValueAtTime(700, context.currentTime);
+            break;
+          case "start":
+            oscillator.frequency.setValueAtTime(440, context.currentTime); // A4 - Start-Sound
+            break;
+          case "finish":
+            oscillator.frequency.setValueAtTime(500, context.currentTime);
+            break;
+          default:
+            oscillator.frequency.setValueAtTime(frequency, context.currentTime);
+        }
+
+        oscillator.type = "sine";
+
+        gainNode.gain.setValueAtTime(0, context.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, context.currentTime + 0.01);
+        gainNode.gain.linearRampToValueAtTime(
+          0,
+          context.currentTime + duration / 1000
+        );
+
+        oscillator.start(context.currentTime);
+        oscillator.stop(context.currentTime + duration / 1000);
+
+        console.log(`🔊 Spiele ${type} Sound (${frequency}Hz, ${duration}ms)`);
+      }
+
+      // Flexibles EMOM System
+      async function startFlexibleEmom() {
+        if (emomRunning) {
+          updateStatus("⚠️ EMOM läuft bereits!");
+          return;
+        }
+
+        // Konfiguration lesen
+        currentConfig.intervalSeconds = parseInt(
+          document.getElementById("intervalSeconds").value
+        );
+        currentConfig.totalRounds = parseInt(
+          document.getElementById("totalRounds").value
+        );
+
+        emomRunning = true;
+        document.getElementById("emom-timer").style.display = "block";
+
+        updateStatus(
+          `🚀 Starte ${currentConfig.intervalSeconds}s EMOM (${currentConfig.totalRounds} Runden)...`
+        );
+
+        // 5-Sekunden Countdown
+        for (let i = 5; i >= 1; i--) {
+          updateTimerDisplay(0, i, "Countdown");
+          updateProgress(0);
+
+          if (i <= 2) {
+            playSound("urgent");
+          } else if (i <= 3) {
+            playSound("warning");
+          } else {
+            playSound("tick");
+          }
+          await sleep(1000);
+        }
+
+        // START Signal
+        updateStatus("🎯 START! EMOM startet...");
+        playSound("start");
+        await sleep(2000);
+
+        // Flexible EMOM Runden
+        for (let round = 1; round <= currentConfig.totalRounds; round++) {
+          updateStatus(
+            `💪 Runde ${round}/${currentConfig.totalRounds} - ARBEITSZEIT!`
+          );
+
+          for (
+            let seconds = currentConfig.intervalSeconds;
+            seconds > 0;
+            seconds--
+          ) {
+            if (!emomRunning) return; // Stop wenn abgebrochen
+
+            updateTimerDisplay(round, seconds, "Arbeitszeit");
+            updateProgress(
+              ((currentConfig.intervalSeconds - seconds) /
+                currentConfig.intervalSeconds) *
+                100
+            );
+
+            // Intelligente Sound-Signale basierend auf Timer-Länge
+            const halfTime = Math.floor(currentConfig.intervalSeconds / 2);
+
+            if (seconds === halfTime) {
+              playSound("halfTime");
+              updateStatus(
+                `💪 Runde ${round}/${currentConfig.totalRounds} - Halbzeit! (${seconds}s)`
+              );
+            } else if (seconds === 10) {
+              playSound("tick");
+              updateStatus(
+                `💪 Runde ${round}/${currentConfig.totalRounds} - Noch 10 Sekunden!`
+              );
+            } else if (seconds === 5) {
+              playSound("warning");
+              updateStatus(
+                `⚠️ Runde ${round}/${currentConfig.totalRounds} - Warnung! (${seconds}s)`
+              );
+            } else if (seconds <= 3) {
+              playSound("urgent");
+              updateStatus(
+                `🚨 Runde ${round}/${currentConfig.totalRounds} - DRINGEND! (${seconds}s)`
+              );
+            }
+
+            await sleep(1000);
+          }
+
+          // Rundenende
+          updateProgress(100);
+          playSound("finish");
+
+          // Direkt zur nächsten Runde ohne Pause (außer bei der letzten Runde)
+          if (round < currentConfig.totalRounds) {
+            await sleep(500); // Kurz warten damit finish-Sound hörbar ist
+
+            // START-Sound für die neue Runde
+            updateStatus(
+              `🎯 Runde ${round + 1}/${currentConfig.totalRounds} - START!`
+            );
+            updateTimerDisplay(
+              round + 1,
+              currentConfig.intervalSeconds,
+              "START!"
+            );
+            playSound("start");
+            await sleep(1000); // Start-Sound ausklingen lassen
+          }
+        }
+
+        // Nur am Ende aller Runden
+        updateStatus("🎉 Alle Runden beendet!");
+        updateTimerDisplay(currentConfig.totalRounds, 0, "FERTIG!");
+
+        // Finale Fanfare
+        updateStatus(
+          `🎉 ${currentConfig.intervalSeconds}s EMOM ABGESCHLOSSEN! Großartige Leistung!`
+        );
+        for (let i = 0; i < 3; i++) {
+          playSound("finish");
+          await sleep(500);
+        }
+
+        await sleep(2000);
+        updateStatus("✅ EMOM Training beendet!");
+
+        setTimeout(() => {
+          document.getElementById("emom-timer").style.display = "none";
+          emomRunning = false;
+        }, 3000);
+      }
+
+      function updateTimerDisplay(round, seconds, phase) {
+        document.getElementById("round-info").textContent =
+          round > 0
+            ? `Runde ${round}/${currentConfig.totalRounds}`
+            : "Countdown";
+        document.getElementById("time-display").textContent = seconds;
+        document.getElementById("phase-info").textContent = phase;
+
+        const timeDisplay = document.getElementById("time-display");
+        if (phase === "Countdown") {
+          timeDisplay.style.color = "#FFD700";
+        } else if (seconds <= 3 && phase === "Arbeitszeit") {
+          timeDisplay.style.color = "#FF6B6B";
+        } else if (seconds <= 10 && phase === "Arbeitszeit") {
+          timeDisplay.style.color = "#FF8E53";
+        } else {
+          timeDisplay.style.color = "#fff";
+        }
+      }
+
+      function updateProgress(percentage) {
+        document.getElementById("progress-bar").style.width = percentage + "%";
+      }
+
+      function stopAllSounds() {
+        emomRunning = false;
+        if (audioContext) {
+          audioContext.close().then(() => {
+            audioContext = null;
+            updateStatus("🛑 Alle Sounds gestoppt");
+            document.getElementById("emom-timer").style.display = "none";
+          });
+        } else {
+          updateStatus("🛑 Gestoppt");
+          document.getElementById("emom-timer").style.display = "none";
+        }
+      }
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      // Auto-Initialisierung bei erstem Klick
+      document.addEventListener(
+        "click",
+        function () {
+          initAudio();
+        },
+        { once: true }
+      );
+
+      console.log("🎵 EMOM Flexible Demo geladen!");
+      updateStatus("Bereit zum Abspielen - Konfigurieren Sie Ihr EMOM!");
+    </script>
+  </body>
+</html>

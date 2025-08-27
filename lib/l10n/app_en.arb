@@ -1,0 +1,349 @@
+{
+  "appTitle": "Training App",
+  "exercises": "Exercises",
+  "workouts": "Workouts",
+  "emoms": "EMOMs",
+  "history": "History",
+  "calendar": "Calendar",
+  "settings": "Settings",
+  "counter": "Counter",
+  "statistics": "Statistics",
+  "addExercise": "Add Exercise",
+  "addWorkout": "Add Workout",
+  "editExercise": "Edit Exercise",
+  "editWorkout": "Edit Workout",
+  "delete": "Delete",
+  "save": "Save",
+  "cancel": "Cancel",
+  "name": "Name",
+  "description": "Description",
+  "sets": "Sets",
+  "reps": "Reps",
+  "weight": "Weight (kg)",
+  "duration": "Duration",
+  "note": "Note",
+  "date": "Date",
+  "time": "Time",
+  "selectExercise": "Select Exercise",
+  "noExercises": "No exercises yet",
+  "noWorkouts": "No workouts yet",
+  "createYourFirstExercise": "Create your first exercise to get started",
+  "createYourFirstWorkout": "Create your first workout to get started",
+  "exerciseName": "Exercise Name",
+  "exerciseDescriptionEn": "Exercise Description (English)",
+  "exerciseDescriptionDe": "Exercise Description (German)",
+  "workoutName": "Workout Name",
+  "workoutDate": "Workout Date",
+  "addExerciseToWorkout": "Add Exercise to Workout",
+  "workoutDetails": "Workout Details",
+  "exerciseDetails": "Exercise Details",
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "confirmDelete": "Confirm Delete",
+  "deleteExerciseMessage": "Are you sure you want to delete this exercise?",
+  "deleteWorkoutMessage": "Are you sure you want to delete this workout?",
+  "yes": "Yes",
+  "no": "No",
+  "minutes": "minutes",
+  "seconds": "seconds",
+  "kg": "kg",
+  "lbs": "lbs",
+  "weightUnit": "Weight Unit",
+  "weightUnitKg": "Kilogram (kg)",
+  "weightUnitLbs": "Pound (lbs)",
+  "setsLabel": "Sets",
+  "repsLabel": "Repetitions",
+  "durationLabel": "Duration",
+  "weightLabel": "Weight",
+  "noteLabel": "Note (optional)",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "tomorrow": "Tomorrow",
+  "noWorkoutsOnDate": "No workouts on this date",
+  "workoutsOnDate": "Workouts on {date}",
+  "totalWorkouts": "Total Workouts: {count}",
+  "recentWorkouts": "Recent Workouts",
+  "allWorkouts": "All Workouts",
+  "filterByDate": "Filter by Date",
+  "clearFilter": "Clear Filter",
+  "language": "Language",
+  "english": "English",
+  "german": "German",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "about": "About",
+  "version": "Version",
+  "help": "Help",
+  "howToUse": "How to Use",
+  "howToUseDescription": "1. Create exercises with names and descriptions\n2. Create workouts and add exercises to them\n3. Track your progress in the history and calendar",
+  "contact": "Contact",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "logout": "Logout",
+  "login": "Login",
+  "register": "Register",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "forgotPassword": "Forgot Password?",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "welcome": "Welcome to Training App",
+  "welcomeDescription": "Track your workouts and exercises with ease",
+  "getStarted": "Get Started",
+  "retry": "Retry",
+  "quickAccess": "Quick Access",
+  "newWorkout": "New Workout",
+  "newExercise": "New Exercise",
+  "yourProgress": "Your Progress",
+  "completedWorkouts": "Completed Workouts",
+  "availableExercises": "Available Exercises",
+  "lastWorkout": "Last Workout",
+  "mostUsedExercises": "Most Used Exercises",
+  "dashboard": "Dashboard",
+  "createWorkout": "Create workout",
+  "addExerciseSubtitle": "Add exercise",
+  "fitnessCompanion": "Your Fitness Companion",
+  "searchExercise": "Search exercise...",
+  "exerciseName": "Exercise name",
+  "pleaseEnterExerciseName": "Please enter an exercise name",
+  "editExerciseTitle": "Edit Exercise",
+  "newExerciseTitle": "New Exercise",
+  "editWorkoutTitle": "Edit Workout",
+  "newWorkoutTitle": "New Workout",
+  "workoutNameLabel": "Workout name",
+  "editExerciseTooltip": "Edit exercise",
+    "deleteExerciseTooltip": "Delete exercise",
+  
+  "searchExercise": "Search exercise...",
+  "selectedExercise": "Selected: {name}",
+  "@selectedExercise": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "selectExerciseError": "Please select an exercise",
+  "autoCalculatedSets": "Automatically calculated for variable reps",
+  "repsPerSetLabel": "Repetitions per set (optional)",
+  "repsPerSetHint": "e.g. 20, 15, 12, 8",
+  "repsPerSetHelper": "Comma-separated list for different reps per set (sets will be calculated automatically)",
+  "invalidRepsFormat": "Invalid format. Use: 20, 15, 12, 8",
+  "selectExerciseFirst": "Please select an exercise first",
+  "editWorkoutTooltip": "Edit workout",
+  "deleteWorkoutTooltip": "Delete workout",
+  "workoutOverview": "Workout Overview",
+  "totalReps": "Total Repetitions",
+  "totalSets": "Total Sets",
+  "exercisesLabel": "Exercises",
+  
+  "repCounter": "Rep Counter",
+  "countRepsUnlimited": "Count your repetitions without limit",
+  "chooseStepSize": "Choose step size:",
+  "currentClickValue": "Current: +{value} per click",
+  "@currentClickValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "undoAction": "Undo: {action} (was {value})",
+  "@undoAction": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "lastActions": "Recent actions:",
+  "historyEntry": "{action} → was {value}",
+  "@historyEntry": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "counterInstructions": "Choose your step size and tap the green button\nPerfect for sets: 1s for single reps, 10s/20s for whole sets",
+  
+  "trainingStatistics": "Your Training Statistics",
+  "progressOverview": "Overview of your progress",
+  "generalOverview": "General Overview",
+  "workouts": "Workouts",
+  "totalSets": "Total Sets",
+  "totalReps": "Total Reps",
+  "avgRepsPerWorkout": "Avg Reps / Workout",
+  "exerciseRanking": "Exercise Ranking",
+  "noExercisesUsed": "No exercises used yet",
+  "createWorkoutHint": "Create a workout and add exercises!",
+  "timesUsed": "{count}x used",
+  "@timesUsed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sets": "{count} sets",
+  "@sets": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reps": "{count} reps",
+  "@reps": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "exportData": "Export Data",
+  "exportDataSubtitle": "Export your training data",
+  "dataStatistics": "Data Statistics",
+  "dataStatisticsSubtitle": "Show overview of your data",
+  "dataStorage": "Data Storage",
+  "dataStorageSubtitle": "All data is stored locally on your device",
+  "selectLanguage": "Select Language",
+  "exportDataDialog": "Export Data",
+  "chooseExportFormat": "Choose export format:",
+  "jsonExport": "JSON Export",
+  "csvExport": "CSV Export",
+  "dataStatisticsDialog": "Data Statistics",
+  "totalExercises": "Total exercises: {count}",
+  "@totalExercises": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "userExercises": "User exercises: {count}",
+  "@userExercises": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "predefinedExercises": "Predefined exercises: {count}",
+  "@predefinedExercises": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "totalWorkouts": "Total workouts: {count}",
+  "@totalWorkouts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exercisesInWorkouts": "Exercises in workouts: {count}",
+  "@exercisesInWorkouts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "asOf": "As of: {date}",
+  "@asOf": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "close": "Close",
+  "appDescription": "A local training app for managing your exercises and workouts. All data is stored securely on your device.",
+  "localStorage": "Local Storage",
+  "storageFeatures": "• All your data is stored locally on your device\n• No cloud synchronization\n• Full control over your data\n• Export functions available for backups",
+  "advantages": "Advantages:",
+  "storageAdvantages": "• Privacy protection\n• Offline availability\n• Fast performance\n• No internet connection required",
+  "understood": "Understood",
+  "jsonExportSuccess": "JSON export successfully shared!",
+  "csvExportSuccess": "CSV export successfully shared!",
+  "jsonExportError": "Error during JSON export: {error}",
+  "@jsonExportError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "csvExportError": "Error during CSV export: {error}",
+  "@csvExportError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "statisticsLoadError": "Error loading statistics: {error}",
+  "@statisticsLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "workoutCreatedSuccessfully": "Workout created successfully",
+  "workoutUpdatedSuccessfully": "Workout updated successfully",
+  "errorOccurred": "An error occurred",
+  "noExercisesInWorkout": "No exercises in this workout yet",
+  "addFirstExerciseToWorkout": "Add your first exercise to get started",
+  "savedEmomTrainings": "Saved EMOM Trainings",
+  "quickStart": "Quick Start",
+  "createEmom": "Create EMOM",
+  "startEmom": "Start EMOM",
+  "editEmom": "Edit",
+  "deleteEmom": "Delete",
+  "deleteEmomTitle": "Delete EMOM",
+  "deleteEmomConfirm": "Do you really want to delete \"{emomName}\"?",
+  "emomQuickStart": "EMOM Quick Start",
+  "emomQuickStartDescription": "Start an EMOM immediately without defining exercises.",
+  "exercises": "Exercises",
+  "desiredTime": "Desired Time",
+  "minutes": "Minutes",
+  "intervalSeconds": "Interval (Seconds)",
+  "start": "Start",
+  "emomName": "EMOM Name",
+  "emomNameHint": "e.g. Push-Pull Training",
+  "emomNameRequired": "Name is required",
+  "totalTime": "Total Time",
+  "minutesHint": "e.g. 20",
+  "totalTimeRequired": "Total time is required",
+  "interval": "Interval",
+  "chooseInterval": "Choose an interval",
+  "addExercise": "Add Exercise",
+  "noExercisesAdded": "No exercises added yet",
+  "addFirstExercise": "Add your first exercise",
+  "exerciseMinimumError": "Please add at least one exercise",
+  "addExerciseTitle": "Add Exercise",
+  "repetitions": "Repetitions",
+  "repetitionsExample": "e.g. 10x Push-ups",
+  "time": "Time",
+  "timeExample": "e.g. 30s Plank",
+  "addToEmom": "Add to EMOM"
+  "noEmomsYet": "No EMOMs yet",
+  "createFirstEmom": "Create your first EMOM to get started"
+} 
