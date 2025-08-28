@@ -254,7 +254,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get howToUse => 'Verwendung';
 
   @override
-  String get howToUseDescription => '1. Erstellen Sie Übungen mit Namen und Beschreibungen\n2. Erstellen Sie Trainings und fügen Sie Übungen hinzu\n3. Verfolgen Sie Ihren Fortschritt im Verlauf und Kalender';
+  String get howToUseDescription =>
+      '1. Erstellen Sie Übungen mit Namen und Beschreibungen\n2. Erstellen Sie Trainings und fügen Sie Übungen hinzu\n3. Verfolgen Sie Ihren Fortschritt im Verlauf und Kalender';
 
   @override
   String get contact => 'Kontakt';
@@ -385,7 +386,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repsPerSetHint => 'z.B. 20, 15, 12, 8';
 
   @override
-  String get repsPerSetHelper => 'Kommagetrennte Liste für verschiedene Wdh. pro Satz (Sätze werden automatisch berechnet)';
+  String get repsPerSetHelper =>
+      'Kommagetrennte Liste für verschiedene Wdh. pro Satz (Sätze werden automatisch berechnet)';
 
   @override
   String get invalidRepsFormat => 'Ungültiges Format. Verwende: 20, 15, 12, 8';
@@ -439,7 +441,8 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get counterInstructions => 'Wähle deine Schrittgröße und tippe den grünen Button\nPerfekt für Sets: 1er für einzelne Reps, 10er/20er für ganze Sets';
+  String get counterInstructions =>
+      'Wähle deine Schrittgröße und tippe den grünen Button\nPerfekt für Sets: 1er für einzelne Reps, 10er/20er für ganze Sets';
 
   @override
   String get trainingStatistics => 'Deine Trainings-Statistiken';
@@ -532,19 +535,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get close => 'Schließen';
 
   @override
-  String get appDescription => 'Eine lokale Trainings-App zur Verwaltung Ihrer Übungen und Trainings. Alle Daten werden sicher auf Ihrem Gerät gespeichert.';
+  String get appDescription =>
+      'Eine lokale Trainings-App zur Verwaltung Ihrer Übungen und Trainings. Alle Daten werden sicher auf Ihrem Gerät gespeichert.';
 
   @override
   String get localStorage => 'Lokale Speicherung';
 
   @override
-  String get storageFeatures => '• Alle Ihre Daten werden lokal auf Ihrem Gerät gespeichert\n• Keine Cloud-Synchronisation\n• Vollständige Kontrolle über Ihre Daten\n• Export-Funktionen für Backups verfügbar';
+  String get storageFeatures =>
+      '• Alle Ihre Daten werden lokal auf Ihrem Gerät gespeichert\n• Keine Cloud-Synchronisation\n• Vollständige Kontrolle über Ihre Daten\n• Export-Funktionen für Backups verfügbar';
 
   @override
   String get advantages => 'Vorteile:';
 
   @override
-  String get storageAdvantages => '• Datenschutz\n• Offline-Verfügbarkeit\n• Schnelle Performance\n• Keine Internetverbindung erforderlich';
+  String get storageAdvantages =>
+      '• Datenschutz\n• Offline-Verfügbarkeit\n• Schnelle Performance\n• Keine Internetverbindung erforderlich';
 
   @override
   String get understood => 'Verstanden';
@@ -631,4 +637,38 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get createFirstEmom => 'Erstellen Sie Ihr erstes EMOM um zu beginnen';
+
+  @override
+  String get importData => 'Daten importieren';
+
+  @override
+  String get importDataSubtitle => 'Trainingsdaten aus Datei wiederherstellen';
+
+  @override
+  String get noWorkoutHistoryYet => 'Noch keine Trainingshistorie vorhanden';
+
+  @override
+  String createdOn(String date) => 'Erstellt: $date';
+
+  @override
+  String get totalDuration => 'Gesamt Dauer';
+
+  @override
+  String getMonthName(int month) {
+    const months = [
+      'Januar',
+      'Februar',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Dezember',
+    ];
+    return months[month - 1];
+  }
 }

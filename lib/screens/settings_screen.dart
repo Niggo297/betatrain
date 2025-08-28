@@ -33,14 +33,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (context, localeProvider, child) {
               return ListTile(
                 leading: const Icon(Icons.language, color: Colors.white70),
-                title: Text(
-                  l10n.language,
-                  style: const TextStyle(color: Colors.white),
-                ),
+                title: Text(l10n.language, style: const TextStyle(color: Colors.white)),
                 subtitle: Text(
-                  localeProvider.locale.languageCode == 'en'
-                      ? l10n.english
-                      : l10n.german,
+                  localeProvider.locale.languageCode == 'en' ? l10n.english : l10n.german,
                   style: TextStyle(color: Colors.grey[300]),
                 ),
                 onTap: () => _showLanguageDialog(context),
@@ -53,18 +48,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Consumer<WeightUnitProvider>(
             builder: (context, weightUnitProvider, child) {
               return ListTile(
-                leading: const Icon(
-                  Icons.fitness_center,
-                  color: Colors.white70,
-                ),
-                title: Text(
-                  l10n.weightUnit,
-                  style: const TextStyle(color: Colors.white),
-                ),
+                leading: const Icon(Icons.fitness_center, color: Colors.white70),
+                title: Text(l10n.weightUnit, style: const TextStyle(color: Colors.white)),
                 subtitle: Text(
-                  weightUnitProvider.weightUnit == WeightUnit.kg
-                      ? l10n.weightUnitKg
-                      : l10n.weightUnitLbs,
+                  weightUnitProvider.weightUnit == WeightUnit.kg ? l10n.weightUnitKg : l10n.weightUnitLbs,
                   style: TextStyle(color: Colors.grey[300]),
                 ),
                 onTap: () => _showWeightUnitDialog(context),
@@ -74,31 +61,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const Divider(color: Colors.grey),
 
           // Test-Button für Willkommensdialog (nur zum Testen)
-          ListTile(
-            leading: const Icon(Icons.refresh, color: Colors.orange),
-            title: const Text(
-              'Willkommensdialog testen',
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: const Text(
-              'Zeigt den Willkommensdialog für neue Nutzer',
-              style: TextStyle(color: Colors.grey),
-            ),
-            onTap: () => _resetWeightUnitToFirstTime(context),
-          ),
-          const Divider(color: Colors.grey),
+          // ListTile(
+          //   leading: const Icon(Icons.refresh, color: Colors.orange),
+          //   title: const Text(
+          //     'Willkommensdialog testen',
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   subtitle: const Text(
+          //     'Zeigt den Willkommensdialog für neue Nutzer',
+          //     style: TextStyle(color: Colors.grey),
+          //   ),
+          //   onTap: () => _resetWeightUnitToFirstTime(context),
+          // ),
+          // const Divider(color: Colors.grey),
 
           // Data Export Section
           ListTile(
             leading: const Icon(Icons.download, color: Colors.white70),
-            title: Text(
-              l10n.exportData,
-              style: const TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
-              l10n.exportDataSubtitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
+            title: Text(l10n.exportData, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(l10n.exportDataSubtitle, style: const TextStyle(color: Colors.grey)),
             trailing: _isExporting ? const CircularProgressIndicator() : null,
             onTap: _isExporting ? null : () => _showExportDialog(context),
           ),
@@ -106,14 +87,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // Data Import Section
           ListTile(
             leading: const Icon(Icons.upload, color: Colors.white70),
-            title: const Text(
-              'Daten importieren',
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: const Text(
-              'Trainingsdaten aus Datei wiederherstellen',
-              style: TextStyle(color: Colors.grey),
-            ),
+            title: Text(l10n.importData, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(l10n.importDataSubtitle, style: const TextStyle(color: Colors.grey)),
             trailing: _isImporting ? const CircularProgressIndicator() : null,
             onTap: _isImporting ? null : () => _showImportDialog(context),
           ),
@@ -122,14 +97,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // Statistics Section
           ListTile(
             leading: const Icon(Icons.analytics, color: Colors.white70),
-            title: Text(
-              l10n.dataStatistics,
-              style: const TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
-              l10n.dataStatisticsSubtitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
+            title: Text(l10n.dataStatistics, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(l10n.dataStatisticsSubtitle, style: const TextStyle(color: Colors.grey)),
             onTap: () => _showStatisticsDialog(context),
           ),
           const Divider(color: Colors.grey),
@@ -137,10 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // About Section
           ListTile(
             leading: const Icon(Icons.info, color: Colors.white70),
-            title: Text(
-              l10n.about,
-              style: const TextStyle(color: Colors.white),
-            ),
+            title: Text(l10n.about, style: const TextStyle(color: Colors.white)),
             onTap: () => _showAboutDialog(context),
           ),
           const Divider(color: Colors.grey),
@@ -148,14 +114,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // Local Storage Info
           ListTile(
             leading: const Icon(Icons.storage, color: Colors.white70),
-            title: Text(
-              l10n.dataStorage,
-              style: const TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
-              l10n.dataStorageSubtitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
+            title: Text(l10n.dataStorage, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(l10n.dataStorageSubtitle, style: const TextStyle(color: Colors.grey)),
             onTap: () => _showStorageInfoDialog(context),
           ),
         ],
@@ -256,10 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text(l10n.exportDataDialog),
         content: Text(l10n.chooseExportFormat),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n.cancel),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () async {
               Navigator.of(context).pop();
@@ -280,18 +237,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _showImportDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Daten importieren'),
-        content: const Text(
-          'Wählen Sie das Format der zu importierenden Datei:',
+        title: Text(l10n.importData),
+        content: Text(
+          locale == 'de'
+              ? 'Wählen Sie das Format der zu importierenden Datei:'
+              : 'Choose the format of the file to import:',
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Abbrechen'),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () async {
               Navigator.of(context).pop();
@@ -361,12 +320,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(l10n.close),
-            ),
-          ],
+          actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.close))],
         ),
       );
     } catch (e) {
@@ -389,22 +343,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'TrainingsApp',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
+            Text('TrainingsApp', style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 8),
             const Text('Version: 1.0.0'),
             const SizedBox(height: 16),
             Text(l10n.appDescription),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n.close),
-          ),
-        ],
+        actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.close))],
       ),
     );
   }
@@ -420,27 +366,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              l10n.localStorage,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text(l10n.localStorage, style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Text(l10n.storageFeatures),
             const SizedBox(height: 16),
-            Text(
-              l10n.advantages,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text(l10n.advantages, style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 4),
             Text(l10n.storageAdvantages),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n.understood),
-          ),
-        ],
+        actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.understood))],
       ),
     );
   }
@@ -501,17 +436,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _showSuccessSnackBar(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message), backgroundColor: Colors.green),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.green));
     }
   }
 
   void _showErrorSnackBar(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message), backgroundColor: Colors.red),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
     }
   }
 
@@ -628,9 +559,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'Gewichtseinheit zurückgesetzt - Starten Sie die App neu!',
-          ),
+          content: Text('Gewichtseinheit zurückgesetzt - Starten Sie die App neu!'),
           backgroundColor: Colors.orange,
         ),
       );

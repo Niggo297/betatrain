@@ -254,7 +254,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get howToUse => 'How to Use';
 
   @override
-  String get howToUseDescription => '1. Create exercises with names and descriptions\n2. Create workouts and add exercises to them\n3. Track your progress in the history and calendar';
+  String get howToUseDescription =>
+      '1. Create exercises with names and descriptions\n2. Create workouts and add exercises to them\n3. Track your progress in the history and calendar';
 
   @override
   String get contact => 'Contact';
@@ -385,7 +386,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repsPerSetHint => 'e.g. 20, 15, 12, 8';
 
   @override
-  String get repsPerSetHelper => 'Comma-separated list for different reps per set (sets will be calculated automatically)';
+  String get repsPerSetHelper =>
+      'Comma-separated list for different reps per set (sets will be calculated automatically)';
 
   @override
   String get invalidRepsFormat => 'Invalid format. Use: 20, 15, 12, 8';
@@ -439,7 +441,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get counterInstructions => 'Choose your step size and tap the green button\nPerfect for sets: 1s for single reps, 10s/20s for whole sets';
+  String get counterInstructions =>
+      'Choose your step size and tap the green button\nPerfect for sets: 1s for single reps, 10s/20s for whole sets';
 
   @override
   String get trainingStatistics => 'Your Training Statistics';
@@ -532,19 +535,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get close => 'Close';
 
   @override
-  String get appDescription => 'A local training app for managing your exercises and workouts. All data is stored securely on your device.';
+  String get appDescription =>
+      'A local training app for managing your exercises and workouts. All data is stored securely on your device.';
 
   @override
   String get localStorage => 'Local Storage';
 
   @override
-  String get storageFeatures => '• All your data is stored locally on your device\n• No cloud synchronization\n• Full control over your data\n• Export functions available for backups';
+  String get storageFeatures =>
+      '• All your data is stored locally on your device\n• No cloud synchronization\n• Full control over your data\n• Export functions available for backups';
 
   @override
   String get advantages => 'Advantages:';
 
   @override
-  String get storageAdvantages => '• Privacy protection\n• Offline availability\n• Fast performance\n• No internet connection required';
+  String get storageAdvantages =>
+      '• Privacy protection\n• Offline availability\n• Fast performance\n• No internet connection required';
 
   @override
   String get understood => 'Understood';
@@ -631,4 +637,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createFirstEmom => 'Create your first EMOM to get started';
+
+  @override
+  String get importData => 'Import Data';
+
+  @override
+  String get importDataSubtitle => 'Restore training data from file';
+
+  @override
+  String get noWorkoutHistoryYet => 'No workout history yet';
+
+  @override
+  String createdOn(String date) => 'Created: $date';
+
+  @override
+  String get totalDuration => 'Total Duration';
+
+  @override
+  String getMonthName(int month) {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    return months[month - 1];
+  }
 }

@@ -35,9 +35,7 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
 
   Future<void> _loadExercisesSafely() async {
     try {
-      await context.read<WorkoutProvider>().loadWorkoutExercises(
-        widget.workout.id,
-      );
+      await context.read<WorkoutProvider>().loadWorkoutExercises(widget.workout.id);
     } catch (e) {
       print('Failed to load exercises safely: $e');
       // Continue anyway - don't let this crash the screen
@@ -57,15 +55,10 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.workout.name,
-              style: const TextStyle(color: Colors.white),
-            ),
+            Text(widget.workout.name, style: const TextStyle(color: Colors.white)),
             Text(
               _formatDate(widget.workout.date),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: Colors.grey[300]),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[300]),
             ),
           ],
         ),
@@ -87,19 +80,14 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
                 children: [
                   const CircularProgressIndicator(),
                   const SizedBox(height: 16),
-                  const Text(
-                    'Loading exercises...',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  const Text('Loading exercises...', style: TextStyle(color: Colors.white)),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
                         _skipLoadingExercises = true;
                       });
-                      context.read<WorkoutProvider>().skipLoadingExercises(
-                        widget.workout.id,
-                      );
+                      context.read<WorkoutProvider>().skipLoadingExercises(widget.workout.id);
                     },
                     child: const Text('Skip Loading & Continue'),
                   ),
@@ -114,17 +102,11 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.error_outline,
-                    size: 64,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  Icon(Icons.error_outline, size: 64, color: Theme.of(context).colorScheme.error),
                   const SizedBox(height: 16),
                   Text(
                     'Error: ${workoutProvider.error}',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
@@ -140,28 +122,20 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
             );
           }
 
-          final workoutExercises = workoutProvider.getWorkoutExercises(
-            widget.workout.id,
-          );
+          final workoutExercises = workoutProvider.getWorkoutExercises(widget.workout.id);
 
           if (workoutExercises.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.fitness_center_outlined,
-                    size: 64,
-                    color: Colors.grey[400],
-                  ),
+                  Icon(Icons.fitness_center_outlined, size: 64, color: Colors.grey[400]),
                   const SizedBox(height: 16),
                   Text(
                     Localizations.localeOf(context).languageCode == 'de'
                         ? 'Noch keine Übungen in diesem Training'
                         : 'No exercises in this workout yet',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall?.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
@@ -169,9 +143,7 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
                     Localizations.localeOf(context).languageCode == 'de'
                         ? 'Fügen Sie Ihre erste Übung hinzu um zu beginnen'
                         : 'Add your first exercise to get started',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey[300]),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey[300]),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
@@ -201,10 +173,8 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
                       child: WorkoutExerciseCard(
                         workoutExercise: workoutExercise,
                         locale: locale,
-                        onEdit: () =>
-                            _showEditExerciseDialog(context, workoutExercise),
-                        onDelete: () =>
-                            _showDeleteExerciseDialog(context, workoutExercise),
+                        onEdit: () => _showEditExerciseDialog(context, workoutExercise),
+                        onDelete: () => _showDeleteExerciseDialog(context, workoutExercise),
                       ),
                     );
                   },
@@ -220,29 +190,19 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
   void _showAddExerciseDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) =>
-          AddExerciseToWorkoutForm(workoutId: widget.workout.id),
+      builder: (context) => AddExerciseToWorkoutForm(workoutId: widget.workout.id),
     );
   }
 
-  void _showEditExerciseDialog(
-    BuildContext context,
-    WorkoutExercise workoutExercise,
-  ) {
+  void _showEditExerciseDialog(BuildContext context, WorkoutExercise workoutExercise) {
     print('Opening edit dialog for workout exercise: ${workoutExercise.id}');
     showDialog(
       context: context,
-      builder: (context) => AddExerciseToWorkoutForm(
-        workoutId: widget.workout.id,
-        workoutExercise: workoutExercise,
-      ),
+      builder: (context) => AddExerciseToWorkoutForm(workoutId: widget.workout.id, workoutExercise: workoutExercise),
     );
   }
 
-  void _showDeleteExerciseDialog(
-    BuildContext context,
-    WorkoutExercise workoutExercise,
-  ) {
+  void _showDeleteExerciseDialog(BuildContext context, WorkoutExercise workoutExercise) {
     print('Opening delete dialog for workout exercise: ${workoutExercise.id}');
     final l10n = AppLocalizations.of(context)!;
 
@@ -250,10 +210,7 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.grey[800],
-        title: Text(
-          l10n.confirmDelete,
-          style: const TextStyle(color: Colors.white),
-        ),
+        title: Text(l10n.confirmDelete, style: const TextStyle(color: Colors.white)),
         content: Text(
           'Are you sure you want to remove this exercise from the workout?',
           style: const TextStyle(color: Colors.white),
@@ -261,22 +218,14 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(
-              l10n.cancel,
-              style: const TextStyle(color: Colors.blue),
-            ),
+            child: Text(l10n.cancel, style: const TextStyle(color: Colors.blue)),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              context.read<WorkoutProvider>().deleteWorkoutExercise(
-                workoutExercise.id,
-                widget.workout.id,
-              );
+              context.read<WorkoutProvider>().deleteWorkoutExercise(workoutExercise.id, widget.workout.id);
             },
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
+            style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
             child: Text(l10n.delete),
           ),
         ],
@@ -329,10 +278,7 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
         children: [
           Text(
             AppLocalizations.of(context)!.workoutOverview,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
           const SizedBox(height: 16),
           Row(
@@ -345,14 +291,12 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
                   showValue: (stats['totalReps'] ?? 0) > 0,
                 ),
               ),
-              if ((stats['totalReps'] ?? 0) > 0 &&
-                  (stats['totalTime'] ?? 0) > 0)
-                const SizedBox(width: 16),
+              if ((stats['totalReps'] ?? 0) > 0 && (stats['totalTime'] ?? 0) > 0) const SizedBox(width: 16),
               if ((stats['totalTime'] ?? 0) > 0)
                 Expanded(
                   child: _buildStatItem(
                     icon: Icons.timer,
-                    label: 'Gesamt Dauer',
+                    label: AppLocalizations.of(context)!.totalDuration,
                     value: _formatTime(stats['totalTime'] ?? 0),
                     showValue: true,
                   ),
@@ -415,19 +359,13 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
         const SizedBox(height: 4),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ],
     );
   }
 
-  Map<String, int> _calculateWorkoutStats(
-    List<WorkoutExercise> workoutExercises,
-  ) {
+  Map<String, int> _calculateWorkoutStats(List<WorkoutExercise> workoutExercises) {
     int totalReps = 0;
     int totalTime = 0;
     int totalSets = 0;
@@ -446,11 +384,7 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
       totalSets += sets;
     }
 
-    return {
-      'totalReps': totalReps,
-      'totalTime': totalTime,
-      'totalSets': totalSets,
-    };
+    return {'totalReps': totalReps, 'totalTime': totalTime, 'totalSets': totalSets};
   }
 
   String _formatTime(int seconds) {

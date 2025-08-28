@@ -90,10 +90,7 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('de'),
-    Locale('en')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('de'), Locale('en')];
 
   /// No description provided for @appTitle.
   ///
@@ -989,6 +986,42 @@ abstract class AppLocalizations {
   /// **'Export your training data'**
   String get exportDataSubtitle;
 
+  /// No description provided for @importData.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Data'**
+  String get importData;
+
+  /// No description provided for @importDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore training data from file'**
+  String get importDataSubtitle;
+
+  /// No description provided for @noWorkoutHistoryYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No workout history yet'**
+  String get noWorkoutHistoryYet;
+
+  /// No description provided for @createdOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Created: {date}'**
+  String createdOn(String date);
+
+  /// No description provided for @totalDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Duration'**
+  String get totalDuration;
+
+  /// No description provided for @getMonthName.
+  ///
+  /// In en, this message translates to:
+  /// **'getMonthName'**
+  String getMonthName(int month);
+
   /// No description provided for @dataStatistics.
   ///
   /// In en, this message translates to:
@@ -1288,18 +1321,18 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'de': return AppLocalizationsDe();
-    case 'en': return AppLocalizationsEn();
+    case 'de':
+      return AppLocalizationsDe();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

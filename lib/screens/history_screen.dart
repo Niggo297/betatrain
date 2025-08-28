@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../providers/workout_provider.dart';
 import '../models/workout.dart';
 import 'workout_details_screen.dart';
@@ -22,6 +23,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: Consumer<WorkoutProvider>(
@@ -35,24 +38,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.error_outline,
-                    size: 64,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  Icon(Icons.error_outline, size: 64, color: Theme.of(context).colorScheme.error),
                   const SizedBox(height: 16),
                   Text(
                     workoutProvider.error!,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => workoutProvider.loadWorkouts(),
-                    child: const Text('Wiederholen'),
-                  ),
+                  ElevatedButton(onPressed: () => workoutProvider.loadWorkouts(), child: const Text('Wiederholen')),
                 ],
               ),
             );
@@ -66,18 +60,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   Icon(Icons.history, size: 64, color: Colors.grey[400]),
                   const SizedBox(height: 16),
                   Text(
-                    'No workout history yet',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall?.copyWith(color: Colors.white),
+                    l10n.noWorkoutHistoryYet,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Complete your first workout to see it here',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey[300]),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey[300]),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -100,18 +90,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       child: Icon(Icons.sports_gymnastics, color: Colors.white),
                     ),
-                    title: Text(
-                      workout.name,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      _formatDate(workout.date),
-                      style: TextStyle(color: Colors.grey[300]),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey[400],
-                    ),
+                    title: Text(workout.name, style: const TextStyle(color: Colors.white)),
+                    subtitle: Text(_formatDate(workout.date), style: TextStyle(color: Colors.grey[300])),
+                    trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
                     onTap: () {
                       // Show workout details
                       _showWorkoutDetails(context, workout);
@@ -131,11 +112,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   void _showWorkoutDetails(BuildContext context, Workout workout) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => WorkoutDetailsScreen(workout: workout),
-      ),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutDetailsScreen(workout: workout)));
   }
 }
